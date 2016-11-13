@@ -1,0 +1,16 @@
+---
+- name: update
+  apt:
+    upgrade: yes
+    cache_valid_time: 3600
+  become: yes
+  
+- name: install basics
+  apt:
+    name: "{{item}}"
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - git
+    - screen
+  become: yes

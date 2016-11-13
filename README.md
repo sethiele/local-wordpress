@@ -1,0 +1,1 @@
+# Vagrant for local Wordpress Development

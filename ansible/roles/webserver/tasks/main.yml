@@ -1,0 +1,56 @@
+---
+- name: Add PHP7 PPA
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+  become: yes
+
+- name: System - Install Apache
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - apache2
+    - php7.0-common
+    - php7.0-dev
+    - php7.0-json
+    - php7.0-opcache
+    - php7.0-cli
+    - libapache2-mod-php7.0
+    - php7.0
+    - php7.0-mysql
+    - php7.0-fpm
+    - php7.0-curl
+    - php7.0-gd
+    - php7.0-mcrypt
+    - php7.0-mbstring
+    - php7.0-bcmath
+    - php7.0-zip
+  become: yes
+
+- include: vhost.yml
+  with_items:
+    - "{{vars.vhosts}}"
+
+- name: Apache | enable mods
+  apache2_module:
+    name: "{{item}}"
+    state: present
+  become: yes
+  with_items:
+    - rewrite
+    - alias
+    - authz_host
+    - deflate
+    - dir
+    - expires
+    - headers
+    - mime
+    - rewrite
+    - log_config
+    - autoindex
+    - negotiation
+    - setenvif
+  notify:
+    - Restart Apache2
