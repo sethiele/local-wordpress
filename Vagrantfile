@@ -40,10 +40,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Mount htdocs
     apache_vars = YAML.load_file('ansible/group_vars/all/main.yml')
-    apache_vars["vhosts"].each do |vhost|
-        local_dir = "share/htdocs/#{vhost}.local"
+    apache_vars["projects"].each do |project|
+        local_dir = "share/htdocs/#{project.vhost}"
+        remote_dir = "/var/www/#{project.vhost}"
         Dir.mkdir(local_dir) unless File.exists?(local_dir)
-        config.vm.synced_folder local_dir, "/var/www/#{vhost}.local"
+        config.vm.synced_folder local_dir, remote_dir
     end
 
 end

@@ -1,16 +1,16 @@
 ---
-- name: "MySQL | Create database ({{item}})"
+- name: "MySQL | Create database ({{item.name}})"
   mysql_db:
-    name: "{{item}}"
+    name: "{{item.database}}"
     state: present
     login_user: root
     login_password: root
 
-- name: "MySQL | create user ({{item}})"
+- name: "MySQL | create user ({{item.name}})"
   mysql_user:
-    name: "{{item}}"
+    name: "{{item.database}}"
     password: password
-    priv: "{{item}}.*:ALL"
+    priv: "{{item.database}}.*:ALL"
     state: present
     login_user: root
     login_password: root

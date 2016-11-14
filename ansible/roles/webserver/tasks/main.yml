@@ -31,7 +31,7 @@
 
 - include: vhost.yml
   with_items:
-    - "{{vars.vhosts}}"
+    - "{{projects}}"
 
 - name: Apache | enable mods
   apache2_module:

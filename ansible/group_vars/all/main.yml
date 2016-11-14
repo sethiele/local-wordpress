@@ -1,4 +1,4 @@
 ---
-vhosts:
-  - stamperella
-  - iamyourfather
+projects:
+  - { name: stamperella, vhost: stamperella.local, database: stamperella }
+  - { name: iamyourfather, vhost: iamyourfather.local, database: iamyourfather }

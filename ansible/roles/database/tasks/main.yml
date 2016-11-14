@@ -33,4 +33,4 @@
 
 - include: database.yml
   with_items:
-    - "{{vars.vhosts}}"
+    - "{{vars.projects}}"

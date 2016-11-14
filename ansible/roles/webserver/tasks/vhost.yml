@@ -1,8 +1,8 @@
 ---
-- name: "Apache | Create VirtualHosts ({{item}})"
+- name: "Apache | Create VirtualHosts ({{item.name}})"
   template: 
     src: vhost.j2
-    dest: "/etc/apache2/sites-available/{{item}}.local.conf"
+    dest: "/etc/apache2/sites-available/{{item.vhost}}.conf"
     owner: root
     group: root
     mode: 0644
@@ -10,9 +10,9 @@
   notify:
     - Restart Apache2
 
-- name: "Apache | Create htdoc ({{item}})"
+- name: "Apache | Create htdoc ({{item.name}})"
   file:
-    path: "/var/www/{{item}}.local"
+    path: "/var/www/{{item.vhost}}"
     state: directory
     mode: 0755
     owner: vagrant
@@ -21,9 +21,9 @@
   notify:
     - Restart Apache2
 
-- name: "Apache | Enable VirtualHost ({{item}})"
+- name: "Apache | Enable VirtualHost ({{item.name}})"
   apache2_site: 
-    name: "{{item}}.local"
+    name: "{{item.vhost}}"
     state: present
   become: yes
   notify:
