@@ -1,4 +1,4 @@
 ---
 projects:
-  - { name: stamperella, vhost: stamperella.local, database: stamperella }
-  - { name: iamyourfather, vhost: iamyourfather.local, database: iamyourfather }
+  - { name: stamperella, vhost: stamperella.local, database: stamperella, type: wordpress, dbprefix: srwp }
+  - { name: iamyourfather, vhost: iamyourfather.local, database: iamyourfather, type: wordpress, dbprefix: srwp}

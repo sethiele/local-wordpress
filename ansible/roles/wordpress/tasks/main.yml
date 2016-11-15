@@ -1,4 +1,11 @@
 ---
+- name: Wordpress | cli | download
+  get_url:
+    url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    dest: /usr/local/bin/wp
+    mode: 0777
+  become: yes
+
 - include: config.yml
   when: item.type == "wordpress"
   with_items:
