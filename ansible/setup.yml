@@ -12,3 +12,8 @@
   hosts: all
   roles:
     - database
+
+- name: Setup Wordpress
+  hosts: all
+  roles:
+    - wordpress

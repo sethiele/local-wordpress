@@ -3,3 +3,4 @@
 *.retry
 share/htdocs/*
 ansible/group_vars/all/main.yml
+*.log

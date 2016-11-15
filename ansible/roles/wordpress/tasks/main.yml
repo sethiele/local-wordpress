@@ -1,0 +1,6 @@
+---
+- include: config.yml
+  when: item.type == "wordpress"
+  with_items:
+    - "{{projects}}"
+

@@ -48,7 +48,6 @@
     - headers
     - mime
     - rewrite
-    - log_config
     - autoindex
     - negotiation
     - setenvif

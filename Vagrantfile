@@ -6,7 +6,8 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.box = "ubuntu/xenial64"
+    config.vm.box = "ubuntu/trusty64"
+    config.vm.hostname = "vgb-dev"
 
     # Do some network configuration
     config.vm.network "private_network", ip: "192.168.100.100"
@@ -40,11 +41,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Mount htdocs
     apache_vars = YAML.load_file('ansible/group_vars/all/main.yml')
+    hostenty = ""
     apache_vars["projects"].each do |project|
-        local_dir = "share/htdocs/#{project.vhost}"
-        remote_dir = "/var/www/#{project.vhost}"
+        local_dir = "share/htdocs/#{project["vhost"]}"
+        remote_dir = "/var/www/#{project["vhost"]}"
         Dir.mkdir(local_dir) unless File.exists?(local_dir)
         config.vm.synced_folder local_dir, remote_dir
+        hostenty += "#{project["vhost"]} "
     end
 
+    config.vm.post_up_message = "Host Entry:\n" +
+                                "192.168.100.100 #{hostenty}"
 end

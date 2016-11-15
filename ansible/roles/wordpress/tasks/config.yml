@@ -1,0 +1,5 @@
+---
+- name: "Wordpress | config | config for {{item.name}}"
+  template:
+    src: roles/wordpress/templates/wp-config.php.j2
+    dest: "/var/www/{{item.vhost}}/wp-config.php"
