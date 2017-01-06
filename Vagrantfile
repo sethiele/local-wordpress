@@ -6,7 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.box = "ubuntu/xenial64"
+    config.vm.box = "ubuntu/trusty64"
 
     # Do some network configuration
     config.vm.network "private_network", ip: "192.168.100.100"
@@ -36,6 +36,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provision "ansible" do |ansible|
         ansible.playbook = "ansible/setup.yml"
+    end
+
+    # First, install python
+    config.vm.provision "shell" do |s|
+      s.inline = "apt-get install -y python aptitude"
     end
 
     # Mount htdocs

@@ -15,8 +15,8 @@
     path: "/var/www/{{item}}.local"
     state: directory
     mode: 0755
-    owner: vagrant
-    group: vagrant
+    owner: ubuntu
+    group: ubuntu
   become: yes
   notify:
     - Restart Apache2
