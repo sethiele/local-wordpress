@@ -9,7 +9,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "ubuntu/trusty64"
 
     # Do some network configuration
-    config.vm.network "private_network", ip: "192.168.100.100"
+    #config.vm.network "private_network", ip: "192.168.178.5"
+    config.vm.network "private_network", type: "dhcp"
 
     # Assign a quarter of host memory and all available CPU's to VM
     # Depending on host OS this has to be done differently.
@@ -26,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         # Windows...
         else
-            cpus = 4
+            cpus = 2
             mem = 2048
         end
 
